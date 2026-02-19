@@ -21,6 +21,7 @@ Function Write-Automatron
 			$JobID = $Env:PSPrivateMetadata
 			$JobIdStatus = "Env"
 		} else {
+			#Fix HybridWorker v1.3.63 problem
 			$ParentPath = Split-Path -Parent $PSScriptRoot
 			$LogPath = Join-Path -Path $ParentPath -ChildPath "\diags\trace.log"
 			$JobID = ((Get-Content $LogPath -ErrorAction Stop | Select-String "jobId") -split 'jobId=')[1] -replace ']',''
