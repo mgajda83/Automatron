@@ -48,10 +48,10 @@ Function Write-Automatron
 	"### Params:"
 	$Params = [Ordered]@{}
 	#Get parameters with default defined value
-	[ScriptBlock]::Create($Invocation.MyCommand.ScriptBlock.ToString()).Ast.ParamBlock.Parameters | Where-Object { $null -ne $_.DefaultValue } | ForEach-Object { $Params[$($_.Name -replace '\$')] = [PSCustomObject]@{Name=$($_.Name -replace '\$');Value=$(Invoke-Expression -Command $_.DefaultValue.ToString());Default=$true} }
+	[ScriptBlock]::Create($ParentInvocation.MyCommand.ScriptBlock.ToString()).Ast.ParamBlock.Parameters | Where-Object { $null -ne $_.DefaultValue } | ForEach-Object { $Params[$($_.Name -replace '\$')] = [PSCustomObject]@{Name=$($_.Name -replace '\$');Value=$(Invoke-Expression -Command $_.DefaultValue.ToString());Default=$true} }
 
 	#Get parameters with user defined value
-	$Invocation.BoundParameters.GetEnumerator() | ForEach-Object { $Params[$($_.Key)] = [PSCustomObject]@{Name=$_.Key;Value=$_.Value;Default=$false} }
+	$ParentInvocation.BoundParameters.GetEnumerator() | ForEach-Object { $Params[$($_.Key)] = [PSCustomObject]@{Name=$_.Key;Value=$_.Value;Default=$false} }
 
 	#Show params
 	Foreach($Param in $Params.Values) 
