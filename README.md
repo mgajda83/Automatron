@@ -2,7 +2,7 @@ A module that helps organize PowerShell runbooks work in Azure Automation Accoun
 
 Show header output:
 ```
-> Write-Footer -ParentErrors $Error -IgonreErrors "AzTable|PowerShellGet" -Detailed
+> Write-Header  -ParentInvocation $MyInvocation -ErrorAction SilentlyContinue
 
 
 ###########################################################
@@ -23,7 +23,7 @@ Show header output:
 
 Show footer output:
 ```
-> Write-Automatron -ParentInvocation $MyInvocation -ErrorAction SilentlyContinue
+> Write-Footer -ParentErrors $Error -IgonreErrors "PowerShellGet" -Detailed
 
 
 ###########################################################
