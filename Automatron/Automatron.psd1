@@ -12,7 +12,7 @@
 	RootModule = 'Automatron.psm1'
 
 	# Version number of this module.
-	ModuleVersion = '1.0.0.17'
+	ModuleVersion = '1.0.0.20'
 
 	# Supported PSEditions
 	CompatiblePSEditions = @('Core','Desktop')
@@ -91,7 +91,7 @@
 		'Automatron.psm1',
 		'Automatron.psd1',
 		'Write-Header.ps1',
-		'Write-Footer.pl'
+		'Write-Footer.ps1'
 	)
 
 	# Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
