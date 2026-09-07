@@ -12,7 +12,7 @@
 	RootModule = 'Automatron.psm1'
 
 	# Version number of this module.
-	ModuleVersion = '1.0.0.20'
+	ModuleVersion = '1.0.0.22'
 
 	# Supported PSEditions
 	CompatiblePSEditions = @('Core','Desktop')
