@@ -7,7 +7,7 @@ Function Write-Footer
 		$IgonreErrors,
 		[Switch]$Detailed,
 		[ValidateSet("Stop","Continue")]
-		[String]$ErrorFooterAction = "Stop"
+		[String]$ErrorFooterAction = "Continue"
 	)
 
 	#Build footer
@@ -27,11 +27,10 @@ Function Write-Footer
 			$TempErrors = $TempErrors | Where-Object ScriptStackTrace -NotMatch $IgonreErrors
 		} else {
 			#Advanced filters
-			if($IgonreErrors['Exception']) { $TempErrors = $TempErrors | Where-Object Exception -NotMatch $IgonreErrors['Exception'] }
-			if($IgonreErrors['TargetObject']) { $TempErrors = $TempErrors | Where-Object TargetObject -NotMatch $IgonreErrors['TargetObject'] }
-			if($IgonreErrors['CategoryInfo']) { $TempErrors = $TempErrors | Where-Object CategoryInfo -NotMatch $IgonreErrors['CategoryInfo'] }
-			if($IgonreErrors['ErrorDetails']) { $TempErrors = $TempErrors | Where-Object ErrorDetails -NotMatch $IgonreErrors['ErrorDetails'] }
-			if($IgonreErrors['ScriptStackTrace']) { $TempErrors = $TempErrors | Where-Object ScriptStackTrace -NotMatch $IgonreErrors['ScriptStackTrace'] }
+			Foreach($IgonreError in $IgonreErrors.GetEnumerator())
+			{
+				$TempErrors = $TempErrors | Where-Object $IgonreError.Key -NotMatch $IgonreError.Value
+			}
 		}
 
 		$Errors = $TempErrors
