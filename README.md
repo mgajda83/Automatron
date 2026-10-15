@@ -2,7 +2,7 @@ A module that helps organize PowerShell runbooks work in Azure Automation Accoun
 
 Show header output:
 ```
-> Write-Header  -ParentInvocation $MyInvocation -ErrorAction SilentlyContinue
+> Write-Header -ParentInvocation $MyInvocation -Requires @{PSVersion="7.6"}
 
 
 ###########################################################
@@ -13,7 +13,8 @@ Show header output:
 # Username: user manager\containeruser
 # PowerShell: 7.4.6
 # CorrelationId: 62637f90-9182-4279-bc2d-4bc672026841 (PSPrivateMetadata)
-# Automatron: 1.0.0.17
+# Automatron: 1.0.0.27
+# Requires: @{PSVersion="7.6"}
 ### Params:
 # CheckOnly: false [Boolean] (Default)
 # LastRun: "2026-04-13T16:03:58.1618642+00:00" [DateTime] (Default)
@@ -23,12 +24,12 @@ Show header output:
 
 Show footer output:
 ```
-> Write-Footer -ParentErrors $Error -IgonreErrors "PowerShellGet" -Detailed
+> Write-Footer -ParentErrors $Error -IgonreErrors @{ScriptStackTrace="PowerShellGet";ErrorDetails="ConversationBlockedByUser"} -ErrorFooterAction Continue -Detailed
 
 
 ###########################################################
 # StopDateTime: 04/13/2026 16:23:34
-# Igonre Errors: PowerShellGet
+# Igonre Errors: {"ScriptStackTrace":"PowerShellGet","ErrorDetails":"ConversationBlockedByUser"}
 # Total Errors: 0
 # Errors: 0
 ###########################################################
