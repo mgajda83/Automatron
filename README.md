@@ -2,8 +2,7 @@ A module that helps organize PowerShell runbooks work in Azure Automation Accoun
 
 Show header output:
 ```
-> Write-Header -ParentInvocation $MyInvocation -Requires @{PSVersion="7.6"}
-
+PS7.6> Write-Header -ParentInvocation $MyInvocation -Requires @{PSVersion="7.6"}
 
 ###########################################################
 ### Run at:
@@ -21,6 +20,10 @@ Show header output:
 ###########################################################
 ```
 
+```diff
+PS5.1> Write-Header -ParentInvocation $MyInvocation -Requires @{PSVersion="7.6"}
+- The script cannot be run because it contained a statement for minimum Windows PowerShell version:7.2. The version of Windows PowerShell that is required by the script does not match the currently running version of Windows PowerShell 5.1.26100.9711.
+```
 
 Show footer output:
 ```
